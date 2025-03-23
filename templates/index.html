@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Eye Disease Prediction{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+   
+
+    <div class="text-center mt-4">
+        <h2 class="mb-3">Welcome to Eye Disease Prediction</h2>
+        <p>This system helps detect common eye diseases like Cataract, Glaucoma, and Diabetic Retinopathy.</p>
+    </div>
+
+    <!-- Eye Diseases Information Section -->
+    <div class="card mt-3">
+        <div class="card-body">
+            <h3 class="card-title text-center">Common Eye Diseases</h3>
+            <div class="accordion mt-3" id="eyeDiseaseAccordion">
+                <!-- Cataract -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="cataractHeading">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cataractCollapse">
+                            Cataract: Clouding of the Eye Lens
+                        </button>
+                    </h2>
+                    <div id="cataractCollapse" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <p><strong>Causes:</strong> Aging, UV exposure, smoking, diabetes, genetics.</p>
+                            <p><strong>Symptoms:</strong> Blurry vision, difficulty seeing at night, faded colors.</p>
+                            <p><strong>Precautions:</strong> Wear sunglasses, avoid smoking, eat a healthy diet.</p>
+                            <p><strong>Treatment:</strong> Surgery is the only effective treatment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diabetic Retinopathy -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="diabeticHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diabeticCollapse">
+                            Diabetic Retinopathy: Retina Damage Due to Diabetes
+                        </button>
+                    </h2>
+                    <div id="diabeticCollapse" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <p><strong>Causes:</strong> High blood sugar damages retinal blood vessels.</p>
+                            <p><strong>Symptoms:</strong> Blurred vision, dark spots, vision loss.</p>
+                            <p><strong>Precautions:</strong> Control blood sugar, exercise, get regular eye checkups.</p>
+                            <p><strong>Treatment:</strong> Laser therapy, medications, or surgery in severe cases.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Glaucoma -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="glaucomaHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#glaucomaCollapse">
+                            Glaucoma: Increased Eye Pressure Leading to Vision Loss
+                        </button>
+                    </h2>
+                    <div id="glaucomaCollapse" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <p><strong>Causes:</strong> High intraocular pressure, genetics, age.</p>
+                            <p><strong>Symptoms:</strong> Tunnel vision, blind spots, eye pain.</p>
+                            <p><strong>Precautions:</strong> Regular eye exams, healthy diet, exercise.</p>
+                            <p><strong>Treatment:</strong> Eye drops, laser treatment, or surgery.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Normal Eye -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="normalHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#normalCollapse">
+                            Normal: Healthy Eye Condition
+                        </button>
+                    </h2>
+                    <div id="normalCollapse" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <p>Eyes in normal condition require regular care, a balanced diet, and protection from excessive strain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Eye Care Tips Section -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title text-center">Eye Care Tips</h3>
+            <ul class="list-group">
+                <li class="list-group-item">🕶 Wear sunglasses to protect against UV rays.</li>
+                <li class="list-group-item">🥦 Eat foods rich in vitamin A and omega-3 fatty acids.</li>
+                <li class="list-group-item">💧 Stay hydrated to maintain eye moisture.</li>
+                <li class="list-group-item">💻 Follow the 20-20-20 rule to reduce screen strain.</li>
+                <li class="list-group-item">👁 Get regular eye checkups for early disease detection.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Start Diagnosis Button -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('upload_file') }}" class="btn btn-primary btn-lg">Start Diagnosis</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Prediction History{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Prediction History</h2>
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Filename</th>
+                <th>Disease</th>
+                <th>Confidence</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prediction in predictions %}
+                <tr>
+                    <td>{{ prediction.filename }}</td>
+                    <td>{{ prediction.prediction }}</td>
+                    <td>{{ prediction.confidence|round(2) }}%</td>
+                    <td>{{ prediction.local_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+
+                    
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
