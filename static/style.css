@@ -103,6 +103,11 @@ body {
     padding: 2rem;
 }
 
+.profile-header {
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 .profile-label {
     color: #6c757d;
     font-size: 0.9rem;
@@ -114,7 +119,29 @@ body {
     color: var(--text-color);
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-section {
+    padding: 1rem;
+    background: rgba(248, 249, 250, 0.5);
+    border-radius: var(--border-radius);
+}
+
+.profile-stats {
+    background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+}
+
+.stat-box {
+    padding: 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.stat-box i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
 }
 
 .profile-actions {
