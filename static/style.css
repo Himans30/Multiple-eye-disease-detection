@@ -174,6 +174,16 @@ body {
     background-color: rgba(52, 152, 219, 0.05);
 }
 
+.upload-area.has-image {
+    border-style: solid;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.upload-area img {
+    max-height: 300px;
+    object-fit: contain;
+}
+
 .table {
     background: white;
     border-radius: var(--border-radius);

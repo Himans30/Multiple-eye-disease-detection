@@ -126,10 +126,19 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.onload = function(e) {
                 imagePreview.src = e.target.result;
                 imagePreview.classList.remove('d-none');
+                dropArea.classList.add('has-image');
             }
             reader.readAsDataURL(file);
         }
     }
+
+    // Clear file input and preview when form is reset
+    document.getElementById('upload-form').addEventListener('reset', function() {
+        imagePreview.classList.add('d-none');
+        imagePreview.src = '';
+        dropArea.classList.remove('has-image');
+        fileInput.value = '';
+    });
 });
 </script>
 {% endblock %}
