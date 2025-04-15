@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block title %}Prediction Result{% endblock %}
@@ -6,19 +7,31 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow-lg">
+            <div class="card shadow-lg fade-in">
                 <div class="card-body text-center">
-                    <h2 class="card-title text-primary">Prediction Results</h2>
-                    <div class="mt-3">
+                    <h2 class="card-title text-primary mb-4">Prediction Results</h2>
+                    <div class="results-container">
                         {% for filename, prediction, confidence in predictions %}
-                            <div class="mb-4 p-3 border rounded shadow-sm">
-                                <h5 class="text-secondary"><strong>Image:</strong> {{ filename }}</h5>
-                                <p class="text-danger"><strong>Disease:</strong> {{ prediction }}</p>
-                                <p class="text-success"><strong>Confidence:</strong> {{ confidence|round(2) }}%</p>
+                            <div class="prediction-card mb-4 p-4 border rounded shadow-sm">
+                                <h5 class="text-secondary">
+                                    <i class="fas fa-file-image me-2"></i>{{ filename }}
+                                </h5>
+                                <div class="mt-3">
+                                    <p class="text-danger mb-2">
+                                        <i class="fas fa-stethoscope me-2"></i>
+                                        <strong>Disease:</strong> {{ prediction }}
+                                    </p>
+                                    <p class="text-success">
+                                        <i class="fas fa-chart-line me-2"></i>
+                                        <strong>Confidence:</strong> {{ confidence|round(2) }}%
+                                    </p>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
-                    <a href="{{ url_for('download_report') }}" class="btn btn-info mt-3">Download Report</a>
+                    <a href="{{ url_for('download_report') }}" class="btn btn-info mt-3">
+                        <i class="fas fa-download me-2"></i>Download Report
+                    </a>
                 </div>
             </div>
         </div>
