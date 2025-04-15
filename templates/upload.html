@@ -19,10 +19,18 @@
                                 <h4>Upload Eye Image</h4>
                                 <p class="text-muted">Drag and drop your image here or click to browse</p>
                                 
-                                <img id="imagePreview" class="img-fluid mb-3 d-none" alt="Preview">
+                                <div class="preview-container">
+                                    <img id="imagePreview" class="img-fluid mb-3 d-none" alt="Preview">
+                                </div>
                                 
                                 <input type="file" class="form-control" id="file-input" name="file" 
                                        accept="image/*" required style="display: none;">
+                                
+                                <div class="preview-actions d-none" id="preview-actions">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" id="remove-image">
+                                        <i class="fas fa-times me-1"></i>Remove
+                                    </button>
+                                </div>
                                 
                                 <button type="button" class="btn btn-outline-primary mt-3" id="browse-btn">
                                     <i class="fas fa-folder-open me-2"></i>Browse Files
@@ -120,17 +128,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    const previewActions = document.getElementById('preview-actions');
+    const removeImageBtn = document.getElementById('remove-image');
+
     function updateImagePreview(file) {
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 imagePreview.src = e.target.result;
                 imagePreview.classList.remove('d-none');
+                previewActions.classList.remove('d-none');
                 dropArea.classList.add('has-image');
             }
             reader.readAsDataURL(file);
         }
     }
+
+    removeImageBtn.addEventListener('click', function() {
+        imagePreview.classList.add('d-none');
+        previewActions.classList.add('d-none');
+        dropArea.classList.remove('has-image');
+        fileInput.value = '';
+    });
 
     // Clear file input and preview when form is reset
     document.getElementById('upload-form').addEventListener('reset', function() {

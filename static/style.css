@@ -179,9 +179,31 @@ body {
     background-color: rgba(52, 152, 219, 0.05);
 }
 
+.upload-area {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .upload-area img {
-    max-height: 300px;
+    max-height: 250px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.preview-container {
+    position: relative;
+    display: inline-block;
+}
+
+.preview-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
 .table {
