@@ -4,46 +4,73 @@
 {% block title %}Analysis History{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-body">
-            <h2 class="text-center mb-4"><i class="fas fa-history me-2"></i>Analysis History</h2>
-            {% if predictions %}
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>Date</th>
-                            <th>Image</th>
-                            <th>Prediction</th>
-                            <th>Confidence</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for prediction in predictions %}
-                        <tr>
-                            <td>{{ prediction.local_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                            <td>
-                                <img src="{{ url_for('static', filename='uploads/' + prediction.filename) }}" 
-                                     alt="Eye scan" class="img-thumbnail" style="max-width: 100px;">
-                            </td>
-                            <td class="{% if prediction.prediction == 'Normal' %}text-success{% else %}text-danger{% endif %}">
-                                {{ prediction.prediction }}
-                            </td>
-                            <td>{{ "%.2f"|format(prediction.confidence) }}%</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+<div class="container mt-4 fade-in">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="mb-0"><i class="fas fa-history me-2"></i>Analysis History</h2>
+                        <a href="{{ url_for('upload_file') }}" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>New Analysis
+                        </a>
+                    </div>
+
+                    {% if predictions %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Image</th>
+                                    <th>Prediction</th>
+                                    <th>Confidence</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for prediction in predictions %}
+                                <tr>
+                                    <td>{{ prediction.local_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                    <td>
+                                        <img src="{{ url_for('static', filename='uploads/' + prediction.filename) }}" 
+                                             alt="Eye scan" class="img-thumbnail" style="max-width: 100px;">
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if prediction.prediction == 'Normal' %}bg-success{% else %}bg-danger{% endif %} fs-6">
+                                            {{ prediction.prediction }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar {% if prediction.prediction == 'Normal' %}bg-success{% else %}bg-danger{% endif %}" 
+                                                 role="progressbar" 
+                                                 style="width: {{ prediction.confidence }}%">
+                                                {{ "%.2f"|format(prediction.confidence) }}%
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-download me-1"></i>Report
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-folder-open text-muted fa-3x mb-3"></i>
+                        <p class="lead mb-4">No analysis history found</p>
+                        <a href="{{ url_for('upload_file') }}" class="btn btn-primary">
+                            <i class="fas fa-upload me-2"></i>Start New Analysis
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-            {% else %}
-            <div class="text-center">
-                <p class="lead">No analysis history found.</p>
-                <a href="{{ url_for('upload_file') }}" class="btn btn-primary">
-                    <i class="fas fa-upload me-2"></i>Start New Analysis
-                </a>
-            </div>
-            {% endif %}
         </div>
     </div>
 </div>
