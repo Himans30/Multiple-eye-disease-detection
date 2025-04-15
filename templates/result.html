@@ -5,34 +5,42 @@
 
 {% block content %}
 <div class="container mt-4 fade-in">
-    <div class="card">
-        <div class="card-body">
-            <h2 class="text-center mb-4">
-                <i class="fas fa-microscope me-2"></i>Analysis Results
+    <div class="card shadow-sm">
+        <div class="card-header bg-white border-bottom-0 py-4">
+            <h2 class="text-center mb-0">
+                <i class="fas fa-microscope text-primary me-2"></i>Analysis Results
             </h2>
-            
+        </div>
+        <div class="card-body">
             <div class="row g-4">
                 <div class="col-md-6">
-                    <div class="card h-100">
+                    <div class="card h-100 border-0 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title mb-3">Uploaded Image</h5>
+                            <h5 class="card-title d-flex align-items-center mb-3">
+                                <i class="fas fa-image text-primary me-2"></i>
+                                Uploaded Image
+                            </h5>
                             <div class="text-center">
                                 <img src="{{ url_for('static', filename='uploads/' + filename) }}" 
-                                     class="img-fluid rounded shadow-sm" 
-                                     alt="Analyzed Eye Image">
+                                     class="img-fluid rounded" 
+                                     alt="Analyzed Eye Image"
+                                     style="max-height: 300px; object-fit: contain;">
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-6">
-                    <div class="card h-100">
+                    <div class="card h-100 border-0 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title mb-3">Diagnosis</h5>
+                            <h5 class="card-title d-flex align-items-center mb-3">
+                                <i class="fas fa-stethoscope text-primary me-2"></i>
+                                Diagnosis Results
+                            </h5>
                             
-                            <div class="diagnosis-result text-center p-4 rounded-3 mb-4
-                                {% if prediction == 'Normal' %}bg-success-subtle
-                                {% else %}bg-danger-subtle{% endif %}">
+                            <div class="diagnosis-result text-center p-4 rounded mb-4
+                                {% if prediction == 'Normal' %}bg-success-subtle border border-success-subtle
+                                {% else %}bg-danger-subtle border border-danger-subtle{% endif %}">
                                 <h3 class="mb-3 {% if prediction == 'Normal' %}text-success{% else %}text-danger{% endif %}">
                                     {% if prediction == "Normal" %}
                                         <i class="fas fa-check-circle me-2"></i>
@@ -51,19 +59,19 @@
                                 </div>
                                 
                                 <p class="text-muted mb-0">
-                                    Analysis completed at {{ prediction_time }}
+                                    <i class="fas fa-clock me-2"></i>Analysis completed at {{ prediction_time }}
                                 </p>
                             </div>
                             
                             <div class="d-grid gap-2">
-                                <a href="{{ url_for('download_report') }}" class="btn btn-outline-primary">
-                                    <i class="fas fa-download me-2"></i>Download Report
+                                <a href="{{ url_for('download_report') }}" class="btn btn-primary">
+                                    <i class="fas fa-file-pdf me-2"></i>Download PDF Report
                                 </a>
-                                <a href="{{ url_for('upload_file') }}" class="btn btn-primary">
-                                    <i class="fas fa-upload me-2"></i>New Analysis
+                                <a href="{{ url_for('upload_file') }}" class="btn btn-outline-primary">
+                                    <i class="fas fa-upload me-2"></i>Analyze Another Image
                                 </a>
-                                <a href="{{ url_for('view_history') }}" class="btn btn-secondary">
-                                    <i class="fas fa-history me-2"></i>View History
+                                <a href="{{ url_for('view_history') }}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-history me-2"></i>View Analysis History
                                 </a>
                             </div>
                         </div>
