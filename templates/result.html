@@ -1,37 +1,48 @@
 
 {% extends "base.html" %}
 
+{% block title %}Analysis Results{% endblock %}
+
 {% block content %}
-<div class="container fade-in">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h2 class="mb-4">Analysis Results</h2>
-                    
-                    <div class="mb-4">
-                        <img src="{{ url_for('static', filename='uploads/' + filename) }}" class="img-fluid rounded" alt="Analyzed Eye Image">
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-center mb-4"><i class="fas fa-microscope me-2"></i>Analysis Results</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="text-center">
+                        <img src="{{ url_for('static', filename='uploads/' + filename) }}" 
+                             class="img-fluid rounded shadow" alt="Analyzed Eye Image">
                     </div>
-
-                    <div class="result-details">
-                        <h3 class="text-{{ 'danger' if prediction != 'Normal' else 'success' }}">
-                            {% if prediction == "Normal" %}
-                                <i class="fas fa-check-circle"></i>
-                            {% else %}
-                                <i class="fas fa-exclamation-circle"></i>
-                            {% endif %}
-                            {{ prediction }}
-                        </h3>
-                        <p class="lead">Confidence: {{ "%.2f"|format(confidence) }}%</p>
-                    </div>
-
-                    <div class="mt-4">
-                        <a href="{{ url_for('upload_file') }}" class="btn btn-primary me-2">
-                            <i class="fas fa-upload me-2"></i>Analyze Another Image
-                        </a>
-                        <a href="{{ url_for('view_history') }}" class="btn btn-secondary">
-                            <i class="fas fa-history me-2"></i>View History
-                        </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="mb-4 {% if prediction == 'Normal' %}text-success{% else %}text-danger{% endif %}">
+                                {% if prediction == "Normal" %}
+                                    <i class="fas fa-check-circle me-2"></i>
+                                {% else %}
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                {% endif %}
+                                {{ prediction }}
+                            </h3>
+                            <div class="progress mb-4" style="height: 25px;">
+                                <div class="progress-bar {% if prediction == 'Normal' %}bg-success{% else %}bg-danger{% endif %}" 
+                                     role="progressbar" 
+                                     style="width: {{ confidence }}%">
+                                    {{ "%.2f"|format(confidence) }}% Confidence
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <a href="{{ url_for('upload_file') }}" class="btn btn-primary me-2">
+                                    <i class="fas fa-upload me-2"></i>New Analysis
+                                </a>
+                                <a href="{{ url_for('view_history') }}" class="btn btn-secondary">
+                                    <i class="fas fa-history me-2"></i>View History
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

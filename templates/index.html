@@ -4,12 +4,52 @@
 
 {% block content %}
 <div class="container mt-4">
-   
-
     <div class="text-center mt-4">
         <h2 class="mb-3">Welcome to Eye Disease Prediction</h2>
-        <p>This system helps detect common eye diseases like Cataract, Glaucoma, and Diabetic Retinopathy.</p>
+        <p class="lead">Our AI-powered system helps detect common eye diseases like Cataract, Glaucoma, and Diabetic Retinopathy.</p>
     </div>
+
+    {% if session.get('user') %}
+    <div class="text-center mt-4 mb-4">
+        <a href="{{ url_for('upload_file') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-upload me-2"></i>Start New Analysis
+        </a>
+    </div>
+    {% else %}
+    <div class="text-center mt-4 mb-4">
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-sign-in-alt me-2"></i>Login to Start
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-heartbeat me-2"></i>Quick Detection</h5>
+                    <p class="card-text">Upload your eye image and get instant predictions powered by advanced AI technology.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-history me-2"></i>Track Progress</h5>
+                    <p class="card-text">Keep track of your eye health with our comprehensive history tracking system.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-chart-line me-2"></i>Detailed Analysis</h5>
+                    <p class="card-text">Get detailed insights about potential eye conditions with confidence scores.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Eye Diseases Information Section -->
     <div class="card mt-3">
@@ -96,11 +136,6 @@
                 <li class="list-group-item">👁 Get regular eye checkups for early disease detection.</li>
             </ul>
         </div>
-    </div>
-
-    <!-- Start Diagnosis Button -->
-    <div class="text-center mt-4">
-        <a href="{{ url_for('upload_file') }}" class="btn btn-primary btn-lg">Start Diagnosis</a>
     </div>
 </div>
 {% endblock %}

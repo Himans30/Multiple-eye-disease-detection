@@ -1,32 +1,50 @@
+
 {% extends 'base.html' %}
 
-{% block title %}Prediction History{% endblock %}
+{% block title %}Analysis History{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center">Prediction History</h2>
-    <table class="table table-striped mt-3">
-        <thead class="table-dark">
-            <tr>
-                <th>Filename</th>
-                <th>Disease</th>
-                <th>Confidence</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for prediction in predictions %}
-                <tr>
-                    <td>{{ prediction.filename }}</td>
-                    <td>{{ prediction.prediction }}</td>
-                    <td>{{ prediction.confidence|round(2) }}%</td>
-                    <td>{{ prediction.local_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-
-                    
-
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-center mb-4"><i class="fas fa-history me-2"></i>Analysis History</h2>
+            {% if predictions %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Date</th>
+                            <th>Image</th>
+                            <th>Prediction</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prediction in predictions %}
+                        <tr>
+                            <td>{{ prediction.local_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>
+                                <img src="{{ url_for('static', filename='uploads/' + prediction.filename) }}" 
+                                     alt="Eye scan" class="img-thumbnail" style="max-width: 100px;">
+                            </td>
+                            <td class="{% if prediction.prediction == 'Normal' %}text-success{% else %}text-danger{% endif %}">
+                                {{ prediction.prediction }}
+                            </td>
+                            <td>{{ "%.2f"|format(prediction.confidence) }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <p class="lead">No analysis history found.</p>
+                <a href="{{ url_for('upload_file') }}" class="btn btn-primary">
+                    <i class="fas fa-upload me-2"></i>Start New Analysis
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
