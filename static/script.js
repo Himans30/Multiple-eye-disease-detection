@@ -63,20 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }, 100);
     });
-
-    fileInput.addEventListener('change', function() {
-        if (this.files && this.files[0]) {
-            const preview = document.getElementById('imagePreview');
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                preview.classList.add('show');
-                dropArea.classList.add('has-image');
-            }
-
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
 });
+
+

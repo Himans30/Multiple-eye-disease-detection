@@ -196,35 +196,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 300px;
+    margin: 1rem 0;
     background: rgba(248, 249, 250, 0.5);
     border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    min-height: 250px;
-}
-
-.image-preview-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    padding: 1rem;
 }
 
 .preview-container img {
-    width: 100%;
-    height: auto;
-    max-height: 250px;
+    max-height: 300px;
     object-fit: contain;
-    border-radius: calc(var(--border-radius) - 4px);
-    display: none;
-}
-
-.preview-container img.show {
-    display: block;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .preview-actions {
