@@ -87,6 +87,54 @@ body {
     box-shadow: var(--box-shadow);
 }
 
+.profile-icon {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.profile-card {
+    background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.profile-info {
+    padding: 2rem;
+}
+
+.profile-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.profile-value {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.profile-actions {
+    padding: 1.5rem;
+    background: rgba(248, 249, 250, 0.5);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 15px 15px;
+}
+
+.profile-btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.profile-btn:hover {
+    transform: translateY(-2px);
+}
+
 .upload-area {
     border: 2px dashed var(--primary-color);
     border-radius: var(--border-radius);
