@@ -1,122 +1,152 @@
+
 {% extends 'base.html' %}
 
 {% block title %}Home - Eye Disease Prediction{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <div class="text-center mt-4">
-        <h2 class="mb-3">Welcome to Eye Disease Prediction</h2>
-        <p class="lead">Our AI-powered system helps detect common eye diseases like Cataract, Glaucoma, and Diabetic Retinopathy.</p>
-    </div>
-
-    {% if session.get('user') %}
-    <div class="text-center mt-4 mb-4">
-        <a href="{{ url_for('upload_file') }}" class="btn btn-primary btn-lg">
-            <i class="fas fa-upload me-2"></i>Start New Analysis
-        </a>
-    </div>
-    {% else %}
-    <div class="text-center mt-4 mb-4">
-        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
-            <i class="fas fa-sign-in-alt me-2"></i>Login to Start
-        </a>
-    </div>
-    {% endif %}
-
-    <div class="row mt-4">
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-heartbeat me-2"></i>Quick Detection</h5>
-                    <p class="card-text">Upload your eye image and get instant predictions powered by advanced AI technology.</p>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h1 class="display-4 mb-3">Eye Disease Prediction</h1>
+            <p class="lead mb-4">Our AI-powered system helps detect common eye diseases using advanced machine learning technology.</p>
+            {% if session.get('user') %}
+                <a href="{{ url_for('upload_file') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-upload me-2"></i>Start Analysis
+                </a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login to Start
+                </a>
+            {% endif %}
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-history me-2"></i>Track Progress</h5>
-                    <p class="card-text">Keep track of your eye health with our comprehensive history tracking system.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-chart-line me-2"></i>Detailed Analysis</h5>
-                    <p class="card-text">Get detailed insights about potential eye conditions with confidence scores.</p>
-                </div>
-            </div>
+        <div class="col-lg-6 text-center">
+            <i class="fas fa-eye fa-6x text-primary mb-4"></i>
         </div>
     </div>
 
+    <!-- Features Section -->
+    <div class="row mb-5">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-bolt fa-3x text-primary mb-3"></i>
+                    <h3 class="h4 mb-3">Quick Detection</h3>
+                    <p class="text-muted">Get instant predictions powered by advanced AI technology.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
+                    <h3 class="h4 mb-3">Track Progress</h3>
+                    <p class="text-muted">Monitor your eye health with our comprehensive tracking system.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-brain fa-3x text-info mb-3"></i>
+                    <h3 class="h4 mb-3">Smart Analysis</h3>
+                    <p class="text-muted">Get detailed insights with confidence scores for potential conditions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Eye Diseases Information Section -->
-    <div class="card mt-3">
+    <!-- Diseases Section -->
+    <div class="card border-0 shadow-sm mb-5">
         <div class="card-body">
-            <h3 class="card-title text-center">Common Eye Diseases</h3>
-            <div class="accordion mt-3" id="eyeDiseaseAccordion">
-                <!-- Cataract -->
+            <h2 class="text-center mb-4">Eye Conditions We Detect</h2>
+            <div class="accordion" id="eyeDiseaseAccordion">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="cataractHeading">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cataractCollapse">
-                            Cataract: Clouding of the Eye Lens
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cataractInfo">
+                            <i class="fas fa-eye-slash me-2"></i>Cataract
                         </button>
-                    </h2>
-                    <div id="cataractCollapse" class="accordion-collapse collapse show">
+                    </h3>
+                    <div id="cataractInfo" class="accordion-collapse collapse show" data-bs-parent="#eyeDiseaseAccordion">
                         <div class="accordion-body">
-                            <p><strong>Causes:</strong> Aging, UV exposure, smoking, diabetes, genetics.</p>
-                            <p><strong>Symptoms:</strong> Blurry vision, difficulty seeing at night, faded colors.</p>
-                            <p><strong>Precautions:</strong> Wear sunglasses, avoid smoking, eat a healthy diet.</p>
-                            <p><strong>Treatment:</strong> Surgery is the only effective treatment.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="h5 mb-3">Symptoms</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Blurred vision</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Difficulty seeing at night</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Fading colors</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="h5 mb-3">Prevention</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Wear UV protection</li>
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Maintain healthy diet</li>
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Regular eye checkups</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Diabetic Retinopathy -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="diabeticHeading">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diabeticCollapse">
-                            Diabetic Retinopathy: Retina Damage Due to Diabetes
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diabeticInfo">
+                            <i class="fas fa-chart-line me-2"></i>Diabetic Retinopathy
                         </button>
-                    </h2>
-                    <div id="diabeticCollapse" class="accordion-collapse collapse">
+                    </h3>
+                    <div id="diabeticInfo" class="accordion-collapse collapse" data-bs-parent="#eyeDiseaseAccordion">
                         <div class="accordion-body">
-                            <p><strong>Causes:</strong> High blood sugar damages retinal blood vessels.</p>
-                            <p><strong>Symptoms:</strong> Blurred vision, dark spots, vision loss.</p>
-                            <p><strong>Precautions:</strong> Control blood sugar, exercise, get regular eye checkups.</p>
-                            <p><strong>Treatment:</strong> Laser therapy, medications, or surgery in severe cases.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="h5 mb-3">Symptoms</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Blurred vision</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Dark spots</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Vision loss</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="h5 mb-3">Prevention</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Control blood sugar</li>
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Regular exercise</li>
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Healthy diet</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Glaucoma -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="glaucomaHeading">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#glaucomaCollapse">
-                            Glaucoma: Increased Eye Pressure Leading to Vision Loss
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#glaucomaInfo">
+                            <i class="fas fa-exclamation-circle me-2"></i>Glaucoma
                         </button>
-                    </h2>
-                    <div id="glaucomaCollapse" class="accordion-collapse collapse">
+                    </h3>
+                    <div id="glaucomaInfo" class="accordion-collapse collapse" data-bs-parent="#eyeDiseaseAccordion">
                         <div class="accordion-body">
-                            <p><strong>Causes:</strong> High intraocular pressure, genetics, age.</p>
-                            <p><strong>Symptoms:</strong> Tunnel vision, blind spots, eye pain.</p>
-                            <p><strong>Precautions:</strong> Regular eye exams, healthy diet, exercise.</p>
-                            <p><strong>Treatment:</strong> Eye drops, laser treatment, or surgery.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Normal Eye -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="normalHeading">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#normalCollapse">
-                            Normal: Healthy Eye Condition
-                        </button>
-                    </h2>
-                    <div id="normalCollapse" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            <p>Eyes in normal condition require regular care, a balanced diet, and protection from excessive strain.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="h5 mb-3">Symptoms</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Tunnel vision</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Eye pain</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Blind spots</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="h5 mb-3">Prevention</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Regular checkups</li>
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Eye protection</li>
+                                        <li><i class="fas fa-shield-alt text-primary me-2"></i>Exercise regularly</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -124,17 +154,33 @@
         </div>
     </div>
 
-    <!-- Eye Care Tips Section -->
-    <div class="card mt-4">
+    <!-- Tips Section -->
+    <div class="card border-0 shadow-sm mb-4">
         <div class="card-body">
-            <h3 class="card-title text-center">Eye Care Tips</h3>
-            <ul class="list-group">
-                <li class="list-group-item">🕶 Wear sunglasses to protect against UV rays.</li>
-                <li class="list-group-item">🥦 Eat foods rich in vitamin A and omega-3 fatty acids.</li>
-                <li class="list-group-item">💧 Stay hydrated to maintain eye moisture.</li>
-                <li class="list-group-item">💻 Follow the 20-20-20 rule to reduce screen strain.</li>
-                <li class="list-group-item">👁 Get regular eye checkups for early disease detection.</li>
-            </ul>
+            <h2 class="text-center mb-4">Eye Care Tips</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <i class="fas fa-glasses fa-2x text-primary mb-3"></i>
+                        <h3 class="h5">Protection</h3>
+                        <p class="text-muted">Wear UV-protective sunglasses outdoors</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <i class="fas fa-carrot fa-2x text-warning mb-3"></i>
+                        <h3 class="h5">Nutrition</h3>
+                        <p class="text-muted">Eat foods rich in vitamins A and E</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <i class="fas fa-clock fa-2x text-info mb-3"></i>
+                        <h3 class="h5">Screen Time</h3>
+                        <p class="text-muted">Follow the 20-20-20 rule for screens</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
